@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container">
+    <h1>Enter Information Below</h1>
+    <form action="" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <div class="form-group">
+            {{ field.label }}<br>
+            {{ field() }}
+        </div>
+    {% endfor %}
+    </form>
+</div>
+
+
+
+{% if pred %}
+<div class="container jumbotron">
+    <h1>
+        <u>
+            {{ college }}
+        </u>
+    </h1>
+    <div class=container">
+    <h2>Original Admit Rate:</h2>
+    <div>{{ admit_rate }}<div/>
+    <h2>Calculated Admit Rate:</h2>
+    <div>{{ pred }}</div>
+    <h2>Predicted Probability (Plot will appear below):</h2>
+    </div>
+</div>
+
+<div class="container">
+    <img class="chart" src="/plot-{{ college }}-{{ position }}.svg" alt="geo_plot">
+</div>
+
+{% else %}
+    {% if message %}
+        <div class="container">
+            <h2>Error</h2>
+            <div>{{ message }}</div>
+        </div>
+    {% else %}
+        <div class="container">
+            <img src='/cluster_map.svg' alt="cluster_map" class="chart">
+        </div>
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}

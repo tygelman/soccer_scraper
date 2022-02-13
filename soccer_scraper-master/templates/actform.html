@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="container">
+    <h1>Enter Information Below</h1>
+    <form action="" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <div class="form-group">
+            {{ field.label }}<br>
+            {{ field() }}
+        </div>
+    {% endfor %}
+    </form>
+
+    {% if  preds_table %}
+    <div class="container">
+
+       {{ preds_table | safe }}
+
+    </div>
+    {% endif %}
+
+
+</div>
+
+
+{% endblock %}
