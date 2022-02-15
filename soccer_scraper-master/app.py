@@ -148,3 +148,6 @@ def act_estimate():
         return render_template('actform.html', form=form, preds_table=preds_table)
 
     return render_template('actform.html', form=form)
+
+app.run(host = "0.0.0.0", port = 8080)
+
